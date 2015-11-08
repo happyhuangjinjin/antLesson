@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="target_war" basedir=".">
+
+	<property name="webRoot" value="./WebRoot/">
+	</property>
+	<property name="webInfo" value="./WebRoot/WEB-INF">
+	</property>
+	<property name="classes" value="./WebRoot/WEB-INF/classes">
+	</property>
+	<property name="lib" value="./WebRoot/WEB-INF/lib">
+	</property>
+	<property name="xmldir" value="./WebRoot/WEB-INF/web.xml">
+	</property>
+
+	<target name="clean">
+		<delete dir="./build">
+		</delete>
+	</target>
+
+	<target name="init" depends="clean">
+		<mkdir dir="./bulid" />
+		<mkdir dir="./build/StrutDemo" />
+		<mkdir dir="./build/StrutDemo/WEB-INF" />
+		<mkdir dir="./build/StrutDemo/WEB-INF/lib" />
+		<mkdir dir="./build/StrutDemo/WEB-INF/classes" />
+		<copy todir="./build/StrutDemo">
+			<fileset dir="${webRoot}">
+				<include name="**/*.jsp" />
+				<include name="**/*.css" />
+				<include name="**/*.js" />
+			</fileset>
+		</copy>
+		<copy todir="./build/StrutDemo/WEB-INF/lib">
+			<fileset dir="${lib}">
+				<include name="**/*.jar" />
+			</fileset>
+		</copy>
+		<copy todir="./build/StrutDemo/WEB-INF/classes">
+			<fileset dir="${classes}">
+				<include name="**/*.class" />
+			</fileset>
+		</copy>
+		<copy file="${webInfo}/web.xml" todir="./build/StrutDemo/WEB-INF/">
+		</copy>
+		<copy file="${webInfo}/struts-config.xml" todir="./build/StrutDemo/WEB-INF/" />
+	</target>
+
+	<target name="target_war" depends="init">
+		<war destfile="StrutsDemo.war" webxml="./build/StrutDemo/WEB-INF/web.xml">
+			<lib dir="./build/StrutDemo/WEB-INF/lib">
+			</lib>
+			<classes dir="./build/StrutDemo/WEB-INF/classes">
+			</classes>
+			<fileset dir="./build/StrutDemo">
+				<include name="**/*.jsp" />
+			</fileset>
+		</war>
+	</target>
+
+	<target name="upload" depends="target_war">
+		<scp file="./StructDemo.war" todir="root:root@192.168.6.129:/root" trust="true">
+		</scp>
+	</target>
+
+</project>

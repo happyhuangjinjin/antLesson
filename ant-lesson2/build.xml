@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="targetA" name="lesson2">
+
+	<property name="A" value="A">
+	</property>
+	<!-- property name="B" value="B"></property -->
+
+	<property name="C" id="C" value="i love you">
+	</property>
+
+	<!-- property file="./build.properties"></property -->
+	<property name="build.file" location="./build.properties">
+	</property>
+	<ftp password="" server="" userid="" action="" remotedir="">
+	</ftp>
+	 <tstamp>
+	      <format property="touch.time" pattern="MM/dd/yyyy hh:mm aa"
+	              offset="-5" unit="hour"/>
+	  </tstamp>
+	<echo>${touch.time}</echo>
+	<property resource="com/preference.properties">
+	</property>
+	<property name="D" refid="C">
+	</property>
+
+	<target name="targetA" description="清除编译环境" if="A">
+		<echo>已经定义A属性</echo>
+	</target>
+
+	<target name="targetC" description="清除编译环境" unless="B">
+		<echo>没用定义B属性</echo>
+	</target>
+
+	<target name="targetB" depends="targetC">
+		<echo>targetB depends targetA</echo>
+	</target>
+
+	<target name="targetD" depends="targetA,targetC">
+		<echo>targetD depends targetA and targetC</echo>
+	</target>
+
+	<target name="targetE">
+		<echo>${C}</echo>
+		<echo>${url}</echo>
+		<echo>${name}</echo>
+		<echo>${D}</echo>
+		<echo>${build.file}</echo>
+		<echo>$$</echo>
+	</target>
+</project>

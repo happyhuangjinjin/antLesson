@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+	<target name="target_send">
+		<ftp password="root" server="192.168.6.129" userid="root">
+			<fileset dir="./ftptest">
+				<include name="send.txt" />
+			</fileset>
+		</ftp>
+	</target>
+
+	<target name="target_down">
+		<ftp password="root" server="192.168.6.129" action="get" userid="root">
+			<fileset dir="./down">
+				<include name="**/*.txt" />
+			</fileset>
+		</ftp>
+	</target>
+
+	<target name="target_del">
+		<ftp password="root" server="192.168.6.129" action="del" userid="root">
+			<fileset dir="/root">
+				<include name="get.txt" />
+			</fileset>
+		</ftp>
+	</target>
+
+	<target name="target_ssh">
+		<sshexec host="192.168.6.129" port="22" username="root" password="root" command="ls" trust="true" />
+	</target>
+
+	<target name="target_ssh_mdkir">
+		<sshexec host="192.168.6.129" port="22" username="root" password="root" command="mkdir sshmkdir" trust="true" />
+	</target>
+
+	<target name="target_scp">
+		<scp port="22"  file="./ftptest/scp.txt" todir="root:root@192.168.6.129:/root" trust="true">
+		</scp>
+	</target>
+</project>
+

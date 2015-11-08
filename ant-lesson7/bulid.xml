@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+
+	<path id="svnlib">
+		<pathelement location="./lib/ganymed.jar" />
+		<pathelement location="./lib/jna.jar" />
+		<pathelement location="./lib/svnClientAdapter.jar" />
+		<pathelement location="./lib/svnant.jar" />
+		<pathelement location="./lib/svnjavahl.jar" />
+		<pathelement location="./lib/svnkit.jar" />
+	</path>
+
+	<property name="svnUrl" value="https://PC201310051949/svn/ant/trunk">
+	</property>
+
+	<typedef classpathref="svnlib" resource="org/tigris/subversion/svnant/svnantlib.xml">
+	</typedef>
+
+	<target name="svn_1_import">
+		<exec executable="D:/cms/VisualSVN Server/bin/svn">
+			<arg line="import ./src ${svnUrl} --username svnadmin --password svnadmin --message 初始化导入" />
+		</exec>
+	</target>
+
+	<target name="svn_1_check">
+		<exec executable="D:/cms/VisualSVN Server/bin/svn">
+			<arg line="checkout  ${svnUrl} ./checkout --username svnadmin --password svnadmin " />
+		</exec>
+	</target>
+
+	<target name="svn_1_commit">
+		<exec executable="D:/cms/VisualSVN Server/bin/svn">
+			<arg line="commit ./src --username svnadmin --password svnadmin --message 修改" />
+		</exec>
+	</target>
+
+	<svnSetting id="svn.settings" svnkit="true" javahl="false" username="svnadmin" password="svnadmin" />
+	<svnSetting id="svn.settings_javahl" svnkit="false" javahl="true" username="svnadmin" password="svnadmin" />
+	<target name="svn_2_import">
+		<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+		<svn refid="svn.settings">
+			<!-- 执行checkout 命令-->
+			<import  url="${svnUrl}" path="./src" message="init"/>
+		</svn>
+	</target>
+
+	<target name="svn_2_checkout">
+			<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+			<svn refid="svn.settings">
+				<!-- 执行checkout 命令-->
+				<checkout  url="${svnUrl}" destPath="./checkout"/>
+			</svn>
+		</target>
+	
+	<target name="svn_2_commit">
+			<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+			<svn refid="svn.settings">
+				<!-- 执行checkout 命令-->
+				<commit dir="./src" message="修改"/>
+			</svn>
+		</target>
+
+	<target name="svn_2_update">
+			<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+			<svn refid="svn.settings">
+				<!-- 执行checkout 命令-->
+				<update dir="./checkout"/>
+			</svn>
+		</target>
+	
+	
+	<target name="svn_3_import">
+			<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+			<svn refid="svn.settings_javahl">
+				<!-- 执行checkout 命令-->
+				<import  url="${svnUrl}" path="./src" message="init"/>
+			</svn>
+		</target>
+	
+	<target name="svn_3_checkout">
+				<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+				<svn refid="svn.settings_javahl">
+					<!-- 执行checkout 命令-->
+					<checkout  url="${svnUrl}" destPath="./checkout"/>
+				</svn>
+			</target>
+		
+		<target name="svn_3_commit">
+				<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+				<svn refid="svn.settings_javahl">
+					<!-- 执行checkout 命令-->
+					<commit dir="./src" message="修改"/>
+				</svn>
+			</target>
+
+		<target name="svn_3_update">
+				<!--引用上面定义的svnSetting ，新的设置SVN属性方式-->
+				<svn refid="svn.settings_javahl">
+					<!-- 执行checkout 命令-->
+					<update dir="./checkout"/>
+				</svn>
+			</target>
+	
+</project>

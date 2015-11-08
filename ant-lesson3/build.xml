@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="lesson3" basedir=".">
+	<target name="lesson3">
+		<echo message="hello echo"></echo>
+		<echo message="hello world\r\rn" file="a.txt"></echo>
+		<echo message="hello world 2\r\n tt" file="a.txt" ></echo>
+		<echo file="a.txt" append="true">
+			a
+			b
+			c
+		</echo>
+		<tstamp>
+		</tstamp>
+		<echo>${DSTAMP}</echo>
+		<echo>${TSTAMP}</echo>
+		<tstamp>
+			<format property="nowTime" pattern="yyyy-MM-dd hh:mm:ss"/>
+		</tstamp>
+		<echo>${nowTime} </echo>
+	</target>
+	
+	<target name="target_mkdir">
+		<mkdir dir="a" />
+		<mkdir dir="a/b/c"/>
+		<echo message="hello world\r\rn" file="a/b/a.txt"></echo>
+				
+	</target>
+	<target name="target_delete">
+		<delete dir="a/b">
+			<exclude name="a.txt"/>
+			<exclude name="a/b.txt"/>
+		</delete>
+		<delete dir="a/b/d">
+		</delete>
+	</target>
+	
+	<target name="target_deleteFile">
+			<delete file="a/b/a.txt">
+			</delete>
+	</target>
+	
+	<target name="target_copy">
+		<copy file="a.txt" tofile="c.dat"></copy>
+		<copy file="a.txt" todir="a">
+		</copy>
+	</target>
+	
+	<target name="target_move">
+		<move file="a.txt" tofile="holle.txt"></move>
+		<move file="holle.txt" todir="a"></move>
+	</target>
+	
+	
+	<target name="target_replace">
+		<replace file="a.txt" token="HH" value="MM">
+		</replace>
+		<replace dir="a" token="GG" value="MM">
+		</replace>
+	</target>
+	
+	<target name="target_zip">
+		<zip destfile="dest.zip" basedir="a" 
+			excludes="**/*.txt"></zip>
+		<zip destfile="dest2.zip" basedir="a" 
+					includes="**/*.txt"></zip>
+	</target>
+	
+	<target name="target_nuzip">
+		<unzip dest="b" src="dest.zip" ></unzip>
+	</target>
+	
+	<target name="target_tar">
+		<tar destfile="mydest.tar" basedir="a"></tar>
+	</target>
+	
+	<target name="target_untar">
+		<untar src="mydest.tar" dest="c"></untar>
+	</target>
+	
+	<target name="target_common">
+		<echo>target_common</echo>
+	</target>
+	
+	<target name="target_antCall">
+		<antcall target="target_common"></antcall>
+	</target>
+	
+	<target name="target_ant">
+		<ant antfile="mybuild.xml" dir="." ></ant>
+		<ant antfile="mybuild.xml" dir="." target="mytarget2" output="mybuild.txt"></ant>
+	</target>
+	
+</project>

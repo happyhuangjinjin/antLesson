@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+
+	<target name="target_war">
+		<mkdir dir="./target" />
+		<war destfile="./target/my.war" basedir="./WebRoot" webxml="./WebRoot/WEB-INF/web.xml">
+		</war>
+	</target>
+
+	<target name="target_unwar">
+		<mkdir dir="./unwar" />
+		<unwar dest="./unwar" src="./target/my.war" overwrite="true">
+		</unwar>
+	</target>
+
+</project>
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+	<target name="target_javac">
+		<mkdir dir="./target" />
+		<javac srcdir="./src" destdir="./target">
+		</javac>
+	</target>
+
+	<path id="classpath1" location="./lib/commons-io-2.2.jar">
+	</path>
+
+	<target name="target_javac_2">
+		<javac srcdir="./src" destdir="./target" classpath="./lib/commons-io-2.2.jar">
+		</javac>
+	</target>
+
+	<target name="target_javac_3">
+		<javac srcdir="./src" destdir="./target">
+			<classpath refid="classpath1">
+			</classpath>
+		</javac>
+	</target>
+
+	<target name="target_java">
+		<java classname="cn.com.ware.TestTarget" dir="./target" fork="true">
+		</java>
+	</target>
+
+	<target name="target_java_1">
+		<java classname="cn.com.ware.TestIOutils" dir="./target" fork="yes">
+			<arg />
+			<classpath location="./target">
+			</classpath>
+			<classpath location="./lib/commons-io-2.2.jar">
+			</classpath>
+		</java>
+	</target>
+
+	<target name="target_jar">
+		<mkdir dir="./lib" />
+		<jar destfile="./lib/Test.jar" basedir="./target">
+			<manifest>
+				<attribute name="Main-Class" value="cn.com.ware.TestTarget" />
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="target_java_jar">
+		<java classname="cn.com.ware.TestTarget" dir="./lib" fork="yes">
+			<classpath location="./lib/Test.jar">
+			</classpath>
+			<classpath location="./lib/commons-io-2.2.jar">
+			</classpath>
+		</java>
+	</target>
+
+</project>
+

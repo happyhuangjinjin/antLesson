@@ -1,0 +1,3 @@
+
+mytarget2:
+     [echo]  call mytarget

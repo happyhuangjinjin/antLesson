@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="mytarget" basedir=".">
+	<target name="mytarget">
+		<echo> call mytarget</echo>
+	</target>
+	
+	<target name="mytarget2">
+			<echo> call mytarget</echo>
+		</target>
+</project>

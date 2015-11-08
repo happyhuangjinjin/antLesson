@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ant-lesson8"
+  id="myeclipse.1446959121582"
+  context-root="/ant-lesson8"
+  j2ee-spec="5.0"
+  archive="ant-lesson8.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

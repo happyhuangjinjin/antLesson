@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir=".">
+	<target name="target_chgrp">
+		<chgrp file="./a.txt" group="oracleGrp">
+		</chgrp>
+	</target>
+
+	<target name="target_chmod">
+		<chmod perm="755" file="a.txt">
+		</chmod>
+	</target>
+
+	<target name="taget_chown">
+		<chown file="a.txt" owner="oralce">
+		</chown>
+	</target>
+
+	<typedef name="myTask" classname="com.ware.MyTask">
+		<classpath location="./lib/myTask.jar">
+		</classpath>
+		<classpath location="F:/ant/apache-ant-1.9.6/lib/*.jar">
+		</classpath>
+	</typedef>
+
+	<target name="taget_myTask">
+		<myTask filename="d:/a.txt" destFileName="mytask.txt">
+		</myTask>
+	</target>
+	
+	<typedef resource="org/tigris/subversion/svnant/svnantlib.xml" classpath="./lib/svnant.jar"></typedef>
+	
+
+</project>
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="GBK"?>
+<project default="init">
+	<property environment="env" />
+	<target name="clean">
+		<echo>clean</echo>
+	</target>
+	<target name="init">
+		<echo>init</echo>
+		<tstamp>
+			<format property="touch.time" pattern="MM/dd/yyyy HH:mm:ss aa" />
+		</tstamp>
+		<echo>${touch.time}</echo>
+	</target>
+</project>
